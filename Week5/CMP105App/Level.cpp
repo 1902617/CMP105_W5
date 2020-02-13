@@ -22,7 +22,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 		zombieCounter += 100;
 	}
 
-	playerTexture.loadFromFile("gfx/ArcherSprite-Sheet.png");
+	playerTexture.loadFromFile("gfx/ArcherSpriteSheet.png");
 	player.setSize(sf::Vector2f(18, 24));
 	player.setPosition(300, 300);
 	player.setTexture(&playerTexture);
@@ -38,7 +38,7 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
-	if(input->isKeyDown(sf::Keyboard::W))
+	/*if(input->isKeyDown(sf::Keyboard::W))
 	{
 		currZombie--;
 		if (currZombie <= 0)
@@ -46,9 +46,9 @@ void Level::handleInput(float dt)
 			currZombie = 0;
 		}
 		input->setKeyUp(sf::Keyboard::W);
-	}
+	}*/
 
-	if (input->isKeyDown(sf::Keyboard::S))
+	/*if (input->isKeyDown(sf::Keyboard::S))
 	{
 		currZombie++;
 		if (currZombie >= 4)
@@ -56,24 +56,24 @@ void Level::handleInput(float dt)
 			currZombie = 4;
 		}
 		input->setKeyUp(sf::Keyboard::S);
-	}
+	}*/
 
 	if (input->isKeyDown(sf::Keyboard::D))
 	{
 		isIdle = false;
 		idleDir = false;
-		zombies[currZombie].walkingRight();
-		zombies[currZombie].move(speed * dt, 0);
-		zombies[currZombie].update(dt);
+		player.walkingRight();
+		player.move(speed * dt, 0);
+		player.update(dt);
 	}
 
 	if (input->isKeyDown(sf::Keyboard::A))
 	{
 		isIdle = false;
 		idleDir = true;
-		zombies[currZombie].walkingLeft();
-		zombies[currZombie].move(-speed * dt, 0);
-		zombies[currZombie].update(dt);
+		player.walkingLeft();
+		player.move(-speed * dt, 0);
+		player.update(dt);
 	}
 
 	if (!input->isKeyDown(sf::Keyboard::D) && !input->isKeyDown(sf::Keyboard::A))
@@ -91,14 +91,14 @@ void Level::update(float dt)
 	{
 		for (int i = 0; i <= 4; i++)
 		{
-			zombies[i].idleZombieL(dt);
+			player.idleLeft(dt);
 		}
 	}
 	else if(isIdle && !idleDir)
 	{
 		for (int i = 0; i <= 4; i++)
 		{
-			zombies[i].idleZombieR(dt);
+			player.idleRight(dt);
 		}
 	}
 }
