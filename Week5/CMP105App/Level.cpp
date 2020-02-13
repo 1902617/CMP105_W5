@@ -21,6 +21,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 		zombies[i].setTexture(&zombTexture);
 		zombieCounter += 100;
 	}
+
+	playerTexture.loadFromFile("gfx/ArcherSprite-Sheet.png");
+	player.setSize(sf::Vector2f(18, 24));
+	player.setPosition(300, 300);
+	player.setTexture(&playerTexture);
+
+
 }
 
 Level::~Level()
@@ -78,6 +85,7 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
+	player.update(dt);
 
 	if (isIdle && idleDir)
 	{
@@ -100,10 +108,11 @@ void Level::render()
 {
 	beginDraw();
 
-	for (int i = 0; i <= 4; i++)
-	{
-		window->draw(zombies[i]);
-	}
+	////for (int i = 0; i <= 4; i++)
+	////{
+	//	window->draw(zombies[i]);
+	//}
+	window->draw(player);
 
 	endDraw();
 }

@@ -4,6 +4,7 @@
 #include "Framework/Input.h"
 #include "Framework/GameObject.h"
 #include "Zombie.h"
+#include "Player.h"
 #include <string>
 #include <iostream>
 
@@ -30,5 +31,8 @@ private:
 	bool isIdle, idleDir;
 
 	sf::Texture zombTexture;
+	sf::Texture playerTexture;
+
 	Zombie zombies[5];
+	Player player;
 };
