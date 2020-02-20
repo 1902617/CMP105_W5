@@ -8,7 +8,7 @@ public:
 	Player();
 	~Player();
 
-	void update(float dt) override;
+	void handleInput(float dt) override;
 	void idleLeft(float dt);
 	void idleRight(float dt);
 	void walkingRight(float dt);
