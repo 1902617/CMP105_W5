@@ -15,7 +15,7 @@ Player::Player()
 	idle.addFrame(sf::IntRect(198, y, w, h));
 	idle.addFrame(sf::IntRect(220, y, w, h));
 
-	idle.setFrameSpeed(1.f / 10.f);
+	idle.setFrameSpeed(1.f / 2.f);
 
 	walk.addFrame(sf::IntRect(0, y2, w, h));
 	walk.addFrame(sf::IntRect(22, y2, w, h));
@@ -27,7 +27,7 @@ Player::Player()
 	walk.addFrame(sf::IntRect(154, y2, w, h));
 	walk.addFrame(sf::IntRect(176, y2, w, h));
 
-	walk.setFrameSpeed(1.f / 20.f);
+	walk.setFrameSpeed(1.f / 10.f);
 	
 }
 
@@ -38,8 +38,7 @@ Player::~Player()
 
 void Player::update(float dt)
 {
-	walk.animate(dt);
-	//setTextureRect(walk.getCurrentFrame());
+
 }
 
 void Player::idleLeft(float dt)
@@ -56,12 +55,16 @@ void Player::idleRight(float dt)
 	setTextureRect(idle.getCurrentFrame());
 }
 
-void Player::walkingRight()
+void Player::walkingRight(float dt)
 {
 	walk.setFlipped(false);
+	walk.animate(dt);
+	setTextureRect(walk.getCurrentFrame());
 }
 
-void Player::walkingLeft()
+void Player::walkingLeft(float dt)
 {
 	walk.setFlipped(true);
+	walk.animate(dt);
+	setTextureRect(walk.getCurrentFrame());
 }

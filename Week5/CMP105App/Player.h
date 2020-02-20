@@ -11,8 +11,8 @@ public:
 	void update(float dt) override;
 	void idleLeft(float dt);
 	void idleRight(float dt);
-	void walkingRight();
-	void walkingLeft();
+	void walkingRight(float dt);
+	void walkingLeft(float dt);
 
 protected:
 	Animation walk;

@@ -12,7 +12,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	currZombie = 0;
 	isIdle = true;
 	idleDir = false;
-	speed = 300.0f;
+	speed = 500.0f;
 
 	for (int i = 0; i <= 4; i++)
 	{
@@ -23,7 +23,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	}
 
 	playerTexture.loadFromFile("gfx/ArcherSpriteSheet.png");
-	player.setSize(sf::Vector2f(18, 24));
+	player.setSize(sf::Vector2f(180, 240));
 	player.setPosition(300, 300);
 	player.setTexture(&playerTexture);
 
@@ -62,7 +62,7 @@ void Level::handleInput(float dt)
 	{
 		isIdle = false;
 		idleDir = false;
-		player.walkingRight();
+		player.walkingRight(dt);
 		player.move(speed * dt, 0);
 		player.update(dt);
 	}
@@ -71,7 +71,7 @@ void Level::handleInput(float dt)
 	{
 		isIdle = false;
 		idleDir = true;
-		player.walkingLeft();
+		player.walkingLeft(dt);
 		player.move(-speed * dt, 0);
 		player.update(dt);
 	}
